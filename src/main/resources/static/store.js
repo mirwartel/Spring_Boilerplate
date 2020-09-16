@@ -4,15 +4,20 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    todos: [
-      'get up', 
-      'eat', 
-      'code'
-    ]
+
+    folders: [],
+
   },
   mutations: {
-    addTodo(state, todo) {
-      state.todos.push(todo)
-    }
+
+
+            setFolders(state, folders) {
+              state.folders = folders
+          },
+          appendAuction (state, folders) {
+              state.folders.push(folder)
+          },
   }
 })
+
+export default store

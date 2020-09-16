@@ -1,21 +1,21 @@
-import userInput from './components/userInput.js'
-import todoList from './components/todoList.js'
 
 export default {
   components: {
-    userInput,
-    todoList
+
   },
   template: `
     <div id="app">
+
+    <router-link to="/">Home</router-link>
       <!-- <h1 v-show="showHeader">Hello Vue!</h1>
       <h1 v-else>IF ELSE</h1>
       <h2>{{ message }}</h2>
       <button @click="toggleHeader">{{ buttonText }}</button> -->
+      <main>
+          <router-view />
+        </main>
 
-      <userInput v-if="showHeader"></userInput>
 
-      <todoList />
     </div>
   `,
   data() {
