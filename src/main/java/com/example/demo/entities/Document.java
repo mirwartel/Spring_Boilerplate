@@ -9,6 +9,7 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int page_number;
     private String text;
     private String name;
@@ -16,11 +17,20 @@ public class Document {
     private String image_processed;
     private String image_boxes;
     private String creation_date;
-    private String upploader;
+    private String uploader;
+    private int folder;
+
 
     public Document() {
     }
 
+    public int getFolder() {
+        return folder;
+    }
+
+    public void setFolder(int folder) {
+        this.folder = folder;
+    }
     public int getId() {
         return id;
     }
@@ -85,12 +95,12 @@ public class Document {
         this.creation_date = creation_date;
     }
 
-    public String getUpploader() {
-        return upploader;
+    public String getUploader() {
+        return uploader;
     }
 
-    public void setUpploader(String upploader) {
-        this.upploader = upploader;
+    public void setUploader(String uploader) {
+        this.uploader = uploader;
     }
 }
 

@@ -1,7 +1,9 @@
 package com.example.demo.services;
 
+import com.example.demo.entities.Document;
 import com.example.demo.entities.DocumentFolder;
 import com.example.demo.repositories.DocumentFolderRepo;
+import com.example.demo.repositories.DocumentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,27 @@ public class DocumentFolderService {
 
     @Autowired
     DocumentFolderRepo documentFolderRepo;
+    @Autowired
+    DocumentRepo documentRepo;
 
-    public List<DocumentFolder> findAllDocuments() {
+    public List<DocumentFolder> findAllDocumentFolders() {
         return (List<DocumentFolder>) documentFolderRepo.findAll();
     }
 
-    public Optional<DocumentFolder> findUserById(int id) {
-        return documentFolderRepo.findById(id);
+    public DocumentFolder findDocumentFolderById(int id) {
+
+        DocumentFolder folder = documentFolderRepo.findById(id);
+        if (folder == null) return null;
+
+        List<Document> documents = documentRepo.findAllByFolder(id);
+
+        folder.setDocuments(documents);
+        return folder;
     }
+
+
+    public DocumentFolder createNewFolder(DocumentFolder newFolder) {
+        return documentFolderRepo.save(newFolder);
+    }
+
 }
