@@ -12,8 +12,6 @@ export default {
         <p>Creation date: {{folder.creation_date}}</p>
  
 
-        <p class="a-description">Description: {{folder.description}}</p>
-        <newBid :folder="folder" v-if="this.$store.state.user && this.$store.state.user.id !== folder.seller"/>
        
         </div>
     </div>

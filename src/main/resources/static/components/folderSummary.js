@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         openFolder(id) {
-            this.$router.push('/folder/' + id)
+            this.$router.push('/folders/' + id)
         }
     }
 }

@@ -3,6 +3,7 @@ import VueRouter from './libs/vue-router.esm.browser.js'
 import store from '/store.js'
 import notFound from './views/notFound.js'
 import home from './views/home.js'
+import folderDetails from './views/folderDetails.js'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,11 @@ const router = new VueRouter({
         path: '/',
         component: home
       },
+      {
+      name: "folderDetails",
+      path: '/folders/:id',
+      component: folderDetails
+    },
       {
 
       
