@@ -8,7 +8,7 @@ export default {
     <div class="folder-details">
         <div>
         <h2>{{folder.name}}</h2>
-        <p>Uploader: {{folder.uploader}}</p>
+        <p>Uploader: {{folder.uploaderUsername}}</p>
         <p>Creation date: {{folder.creation_date}}</p>
  
 
@@ -24,7 +24,7 @@ export default {
             folder: {
                 
                 name: '',
-                uploaderer: '',
+                uploader: '',
 
                 creation_date: '',
                 

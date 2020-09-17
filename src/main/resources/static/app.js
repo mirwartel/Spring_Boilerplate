@@ -1,16 +1,24 @@
+import navbarLoginComponent from './components/navbarLoginComponent.js'
+import navbarLogoutComponent from './components/navbarLogoutComponent.js'
+
 
 export default {
   components: {
+        navbarLoginComponent,
+        navbarLogoutComponent
 
   },
   template: `
     <div id="app">
 
+    <nav class="navbar-top">
     <router-link to="/">Home</router-link>
-      <!-- <h1 v-show="showHeader">Hello Vue!</h1>
-      <h1 v-else>IF ELSE</h1>
-      <h2>{{ message }}</h2>
-      <button @click="toggleHeader">{{ buttonText }}</button> -->
+
+     <router-link v-if="!isLoggedIn" to="/register">Register</router-link>
+     <router-link v-if="isLoggedIn" to="/createNewFolder" >Create New Folder</router-link>
+               <navbarLogoutComponent v-if="isLoggedIn" />
+               <navbarLoginComponent  v-else />
+     </nav>
       <main>
           <router-view />
         </main>
@@ -18,21 +26,20 @@ export default {
 
     </div>
   `,
-  data() {
-    return {
-      message: 'Some random text',
-      showHeader: true
-    }
-  },
+    async created() {
+        let user = await fetch('/auth/whoami')
+
+        try {
+          user = await user.json()
+          this.$store.commit('setUser', user)
+        } catch {
+
+        }
+    },
   computed: {
-    buttonText() {
-      return this.showHeader ? 'Hide header' : 'Show header'
-    }
-  },
-  methods: {
-    toggleHeader() {
-      console.log('clicked toggle')
-      this.showHeader = !this.showHeader
-    }
+        isLoggedIn() {
+            return this.$store.state.user
+        }
   }
-}
+
+ }

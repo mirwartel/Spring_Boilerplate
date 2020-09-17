@@ -10,25 +10,36 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/rest/")
+
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("/rest/users")
     public List<User> getAllUsers() {
 
         return userService.findAllUsers();
 
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/rest/users/{id}")
     public Optional<User> getUserById(@PathVariable int id) {
 
         return userService.findUserById(id);
 
     }
+
+    @PostMapping("/auth/register")
+    public User registerUser(@RequestBody User user) {
+        return userService.registerUser(user);
+    }
+
+    @GetMapping("/auth/whoami")
+    public User whoAmI() {
+        return userService.findCurrentUser();
+    }
+
 
 //    @GetMapping("/rest/users/username/{username}")
 //    public User getUserByUsername(@PathVariable String username) {

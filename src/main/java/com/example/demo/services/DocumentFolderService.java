@@ -4,11 +4,11 @@ import com.example.demo.entities.Document;
 import com.example.demo.entities.DocumentFolder;
 import com.example.demo.repositories.DocumentFolderRepo;
 import com.example.demo.repositories.DocumentRepo;
+import com.example.demo.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DocumentFolderService {
@@ -17,6 +17,8 @@ public class DocumentFolderService {
     DocumentFolderRepo documentFolderRepo;
     @Autowired
     DocumentRepo documentRepo;
+    @Autowired
+    UserRepo userRepo;
 
     public List<DocumentFolder> findAllDocumentFolders() {
         return (List<DocumentFolder>) documentFolderRepo.findAll();
@@ -26,7 +28,7 @@ public class DocumentFolderService {
 
         DocumentFolder folder = documentFolderRepo.findById(id);
         if (folder == null) return null;
-
+        folder.setUploaderUsername(userRepo.findById(folder.getUploader()).get().getUsername());
         List<Document> documents = documentRepo.findAllByFolder(id);
 
         folder.setDocuments(documents);
@@ -37,5 +39,6 @@ public class DocumentFolderService {
     public DocumentFolder createNewFolder(DocumentFolder newFolder) {
         return documentFolderRepo.save(newFolder);
     }
+    
 
 }

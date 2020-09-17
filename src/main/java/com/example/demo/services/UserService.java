@@ -1,8 +1,10 @@
 package com.example.demo.services;
 
+import com.example.demo.configs.MyUserDetailsService;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +15,8 @@ public class UserService {
 
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
 
     public List<User> findAllUsers(){
         return (List<User>) userRepo.findAll();
@@ -20,5 +24,23 @@ public class UserService {
 
     public Optional<User> findUserById(int id){
         return userRepo.findById(id);
+    }
+
+
+
+
+    public User findCurrentUser() {
+        // the login session is stored between page reloads,
+        // and we can access the current authenticated user with this
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepo.findByUsername(username);
+    }
+
+    public User registerUser(User user) {
+        //don't create a user that already exists
+        if(userRepo.findByUsername(user.getUsername())!=null){
+            return null;
+        }
+        return myUserDetailsService.addUser(user.getUsername(), user.getFirst_name(), user.getLast_name(), user.getPassword());
     }
 }

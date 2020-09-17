@@ -1,7 +1,5 @@
 package com.example.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +16,10 @@ public class DocumentFolder {
     private String name;
 
     @Transient
+    private String uploaderUsername;
+
+
+    @Transient
     private List<Document> documents;
 
     public DocumentFolder() {
@@ -25,6 +27,14 @@ public class DocumentFolder {
 
     public List<Document> getDocuments() {
         return documents;
+    }
+
+    public String getUploaderUsername() {
+        return uploaderUsername;
+    }
+
+    public void setUploaderUsername(String uploaderUsername) {
+        this.uploaderUsername = uploaderUsername;
     }
 
     public void setDocuments(List<Document> documents) {

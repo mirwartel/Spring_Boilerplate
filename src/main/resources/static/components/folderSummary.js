@@ -1,15 +1,15 @@
+
+
 export default {
     props: [
         'folder'
     ],
     template: `
         <li
-            @click="openFolder(folder.id)"
+            @click.self="openFolder(folder.id)"
             class="folder-card">
                     Name: {{ folder.name }} <br>
-
-                    Uploader: {{ folder.uploader }} <br/>
-
+                    Uploader: {{ folder.uploaderUsername }} <br/>
                    
         </li>
     `,
@@ -22,5 +22,7 @@ export default {
         openFolder(id) {
             this.$router.push('/folders/' + id)
         }
-    }
+    },
+
+
 }

@@ -6,16 +6,20 @@ export const store = new Vuex.Store({
   state: {
 
     folders: [],
+    user: null,
 
   },
   mutations: {
 
+        setUser(state, user) {
+            state.user = user
+        },
 
             setFolders(state, folders) {
               state.folders = folders
           },
-          appendAuction (state, folders) {
-              state.folders.push(folder)
+          appendFolders (state, folders) {
+              state.folders.push(folders)
           },
   }
 })
