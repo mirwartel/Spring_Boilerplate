@@ -23,7 +23,8 @@ export default {
   
         // handle file changes
         const formData = new FormData();
-  
+
+
         // reset images array on file change
         this.images = []
   

@@ -27,10 +27,10 @@ public class DocumentFolderService {
     public DocumentFolder findDocumentFolderById(int id) {
 
         DocumentFolder folder = documentFolderRepo.findById(id);
+        System.out.print("f");
         if (folder == null) return null;
         folder.setUploaderUsername(userRepo.findById(folder.getUploader()).get().getUsername());
         List<Document> documents = documentRepo.findAllByFolder(id);
-
         folder.setDocuments(documents);
         return folder;
     }

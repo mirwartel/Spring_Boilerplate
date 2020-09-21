@@ -27,19 +27,19 @@ public class DocumentController {
 
     }
 
-    @GetMapping("/rest/documents")
+    @GetMapping("d/ocuments")
     public List<Document> getAllDocuments() {
 
         return documentService.findAllDocuments();
 
     }
 
-    @GetMapping("rest/documents/folder/{name}")
+    @GetMapping("/documents/folder/{name}")
     public List<Document> getDocumentsByFolder(@PathVariable int id){
         return documentService.findAllByFolder(id);
     }
 
-    @PostMapping("/rest/documents")
+    @PostMapping("/documents")
     public Document createNewDocument(@RequestBody Document document){
         return documentService.createNewDocument(document);
     }
