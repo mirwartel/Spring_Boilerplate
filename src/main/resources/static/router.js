@@ -5,7 +5,8 @@ import notFound from './views/notFound.js'
 import home from './views/home.js'
 import register from './views/register.js'
 import folderDetails from './views/folderDetails.js'
-import createNewFolder from './components/addNewFolder.js'
+import createNewFolder from './views/addFolder.js'
+import documentDetails from './views/documentDetails.js'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const router = new VueRouter({
       path: '/folders/:id',
       component: folderDetails
     },
+          {
+          name: "documentDetails",
+          path: '/document/:id',
+          component: documentDetails
+        },
       {
 
       

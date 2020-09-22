@@ -8,8 +8,8 @@ export default {
         <li
             @click.self="openFolder(folder.id)"
             class="folder-card">
-                    Name: {{ folder.name }} <br>
-                    Uploader: {{ folder.uploaderUsername }} <br/>
+                    Name: {{folder.name}} <br>
+                    ID: {{folder.id}} <br>
                    
         </li>
     `,
@@ -23,6 +23,8 @@ export default {
             this.$router.push('/folders/' + id)
         }
     },
+
+
 
 
 }

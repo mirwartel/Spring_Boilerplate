@@ -11,6 +11,7 @@ export default {
     <div class="folder-details">
         <div>
         <h2>{{folder.name}}</h2>
+        <p>Folder ID: {{folder.id}}</p>
         <p>Uploader: {{folder.uploaderUsername}}</p>
         <p>Creation date: {{folder.creation_date}}</p>
         <listAllDocuments :documents='folder.documents'/>
@@ -45,7 +46,7 @@ async created() {
         
     // all dynamic params
 
-    console.log(this.folder.documents)
+//    console.log(this.folder.documents)
 
 
     let folder = await fetch('/rest/folders/' + this.$route.params.id)

@@ -27,7 +27,7 @@ public class DocumentController {
 
     }
 
-    @GetMapping("d/ocuments")
+    @GetMapping("/documents")
     public List<Document> getAllDocuments() {
 
         return documentService.findAllDocuments();

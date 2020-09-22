@@ -1,5 +1,6 @@
 
 /// need to prevent multipart file request
+//need to prevent usser is null
 
 export default {
     props: [
@@ -8,6 +9,8 @@ export default {
     template: `
         <form @submit.prevent = "createNewDocument" class = "documentForm">
                <div>
+               <p>Parent Folder Name: {{folder.name}}</p>
+               <p>Parent Folder id: {{folder.id}}</p>
                 <input name="name" placeholder="document name" v-model="name" required />
                             <label for="files">File to upload:</label>
                             <input type="file" name="files" accept=".png,.jpg,.jpeg,.gif,.bmp,.jfif" multiple required @change="filesChange($event.target.files)" />
@@ -32,7 +35,7 @@ export default {
      image_original:'',
      creation_date:'',
      uploader:'',
-     containingFolder:'',
+     //containingFolder:'',
      imageFiles: null
       }
     },
